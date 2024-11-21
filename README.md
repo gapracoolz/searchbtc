@@ -4,8 +4,8 @@ generate address and then match it with file btc.txt if found your lucky...i hav
 if u have send some donation email me 0xgateio@dmail.ai
 
 
-![image](https://github.com/user-attachments/assets/e4d6a259-8ba3-4bbe-ae8d-ea19f026469c)
-
+GPU Opencl : pip install pyopencl numpy ecdsa pycryptodome bech32 coincurve colorthon  (For GPU Mobile Like Mali)
+GPU Cuda : pip install pycuda numpy ecdsa pycryptodome bech32 coincurve colorthon
 
 Donation
 
