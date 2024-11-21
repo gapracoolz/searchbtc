@@ -109,22 +109,22 @@ def MainCheck():
         if address_info['p2pkh_address'] in Targets:
             wf += 1
             open('Found.txt', 'a').write(f"P2PKH Address: {address_info['p2pkh_address']}\n"
-                                         f"Private Key: {address_info['private_key']}\n"
+                                         f"Private Key: {address_info['WIF']}\n"
                                          f"{'-' * 66}\n")
         elif address_info['compressed_p2pkh_address'] in Targets:
             wf += 1
             open('Found.txt', 'a').write(f"Compressed P2PKH Address: {address_info['compressed_p2pkh_address']}\n"
-                                         f"Private Key: {address_info['private_key']}\n"
+                                         f"Private Key: {address_info['WIF']}\n"
                                          f"{'-' * 66}\n")
         elif address_info['p2sh_address'] in Targets:
             wf += 1
             open('Found.txt', 'a').write(f"P2SH Address: {address_info['p2sh_address']}\n"
-                                         f"Private Key: {address_info['private_key']}\n"
+                                         f"Private Key: {address_info['WIF']}\n"
                                          f"{'-' * 66}\n")
         elif address_info['bech32_address'] in Targets:
             wf += 1
             open('Found.txt', 'a').write(f"Bech32 Address: {address_info['bech32_address']}\n"
-                                         f"Private Key: {address_info['private_key']}\n"
+                                         f"Private Key: {address_info['WIF']}\n"
                                          f"{'-' * 66}\n")
         elif int(z % 100000) == 0:
             lg += 100000
