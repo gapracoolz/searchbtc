@@ -72,8 +72,65 @@ class MaliGPUAddressGenerator:
 
     def generate_bitcoin_address(self, private_key):
         try:
-            # [Previous bitcoin address generation code remains the same]
-            # ... [Keep the same code from the previous version]
+           # Generate WIF
+            fullkey = '80' + private_key.hex()
+            sha256a = SHA256.new(bytes.fromhex(fullkey)).hexdigest()
+            sha256b = SHA256.new(bytes.fromhex(sha256a)).hexdigest()
+            WIF = base58.b58encode(bytes.fromhex(fullkey + sha256b[:8]))
+
+            # Get public key
+            sk = ecdsa.SigningKey.from_string(private_key, curve=ecdsa.SECP256k1)
+            vk = sk.get_verifying_key()
+            x = vk.pubkey.point.x()
+            y = vk.pubkey.point.y()
+            public_key = '04' + x.to_bytes(32, 'big').hex() + y.to_bytes(32, 'big').hex()
+
+            # Get compressed public key
+            compressed_public_key = '02' if y % 2 == 0 else '03'
+            compressed_public_key += x.to_bytes(32, 'big').hex()
+
+            # Generate addresses
+            # P2PKH
+            hash160 = RIPEMD160.new()
+            hash160.update(SHA256.new(bytes.fromhex(public_key)).digest())
+            public_key_hash = '00' + hash160.hexdigest()
+            checksum = SHA256.new(SHA256.new(bytes.fromhex(public_key_hash)).digest()).hexdigest()[:8]
+            p2pkh_address = base58.b58encode(bytes.fromhex(public_key_hash + checksum))
+
+            # Compressed P2PKH
+            hash160 = RIPEMD160.new()
+            hash160.update(SHA256.new(bytes.fromhex(compressed_public_key)).digest())
+            public_key_hash = '00' + hash160.hexdigest()
+            checksum = SHA256.new(SHA256.new(bytes.fromhex(public_key_hash)).digest()).hexdigest()[:8]
+            compressed_p2pkh_address = base58.b58encode(bytes.fromhex(public_key_hash + checksum))
+
+            # P2SH
+            redeem_script = '21' + compressed_public_key + 'ac'
+            hash160 = RIPEMD160.new()
+            hash160.update(SHA256.new(bytes.fromhex(redeem_script)).digest())
+            script_hash = '05' + hash160.hexdigest()
+            checksum = SHA256.new(SHA256.new(bytes.fromhex(script_hash)).digest()).hexdigest()[:8]
+            p2sh_address = base58.b58encode(bytes.fromhex(script_hash + checksum))
+
+            # Bech32
+            witness_program = bytes([0x00, 0x14]) + hash160.digest()
+            bech32_address = bech32_encode('bc', convertbits(witness_program, 8, 5))
+
+            # Taproot
+            internal_key = coincurve.PublicKey.from_secret(private_key).format(compressed=True)
+            taproot_pubkey = internal_key[1:]
+            tweak = hashlib.sha256(b'TapTweak' + taproot_pubkey).digest()
+            taproot_address = bech32m_encode(1, taproot_pubkey)
+
+            return {
+                'private_key': private_key.hex(),
+                'WIF': WIF.decode(),
+                'p2pkh_address': p2pkh_address.decode(),
+                'compressed_p2pkh_address': compressed_p2pkh_address.decode(),
+                'p2sh_address': p2sh_address.decode(),
+                'bech32_address': bech32_address,
+                'taproot_address': taproot_address
+            }
             
         except Exception as e:
             print(f"{RED}Error generating address: {str(e)}{RESET}")
