@@ -1,7 +1,7 @@
 # searchbtc
 
 generate address and then match it with file btc.txt if found your lucky...i have file btc.txt that contain 456258 address btc that have balance on it but i will not upload it...i will send it if someone donation for me to buy cup of coffee
-if u have send some donation email me gateio@dmail.com
+if u have send some donation email me 0xgateio@dmail.ai
 
 Donation
 
