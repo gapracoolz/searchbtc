@@ -5,6 +5,7 @@ if u have send some donation email me 0xgateio@dmail.ai
 
 
 GPU Opencl : pip install pyopencl numpy ecdsa pycryptodome bech32 coincurve colorthon  (For GPU Mobile Like Mali)
+
 GPU Cuda : pip install pycuda numpy ecdsa pycryptodome bech32 coincurve colorthon
 
 Donation
