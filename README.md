@@ -1,6 +1,6 @@
 # Search / Finder Private Key Bitcoin
 
-generate address and then match it with file btc.txt if found your lucky...i have file btc.txt that contain 456258 address btc that have balance on it but i will not upload it...i will send it if someone donation for me to buy cup of coffee
+generate address and then match it with file btc.txt if found your lucky...i have file btc.txt that contain 456258 address and 52m address btc that have balance on it but i will not upload it...i will send it if someone donation for me to buy cup of coffee
 if u have send some donation email me 0xgateio@dmail.ai
 
 SearchV2 contain 52M address btc but will not upload it only upload picture on it (searchV2.png) .. It's depends on donation :) Smile ... 
