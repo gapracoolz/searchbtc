@@ -184,7 +184,7 @@ def write_found(address_type, address, private_key):
     try:
         with open('Found.txt', 'a') as f:
             f.write(f"{address_type}: {address}\n"
-                   f"Private Key: {private_key}\n"
+                   f"Private Key: {WIF}\n"
                    f"{'-' * 66}\n")
     except Exception as e:
         print(f"{RED}Error writing to Found.txt: {str(e)}{RESET}")
@@ -221,7 +221,7 @@ def MainCheckGPU():
                     ]:
                         if address in Targets:
                             wf += 1
-                            open('Found.txt', 'a').write(address_type, address, addr_info['WIF'])
+                            write.found(address_type, address, addr_info['WIF'])
                 
                 if z % 100000 == 0:
                     lg += 100000
