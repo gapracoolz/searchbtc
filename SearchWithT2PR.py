@@ -150,7 +150,7 @@ def MainCheck():
                 ]:
                     if address in Targets:
                         wf += 1
-                        write_found(address_type, address, address_info['WIF'])
+                       open('Found.txt', 'a').write(address_type, address, address_info['WIF'])
                 
                 if z % 100000 == 0:
                     lg += 100000
