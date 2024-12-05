@@ -10,6 +10,17 @@ GPU Opencl : pip install pyopencl numpy ecdsa pycryptodome bech32 coincurve colo
 
 GPU Cuda : pip install pycuda numpy ecdsa pycryptodome bech32 coincurve colorthon
 
+
+For quantum.py
+pip install qiskit
+pip install qiskit-aer
+pip install numpy
+
+On Windows
+Note : 1. Install this first https://www.anaconda.com/download
+       2. then use command from anaconda for pip install qiskit, qiskit aer
+       3. run the program python quantum.py
+
 Donation
 
 BTC : bc1qa9une0ddagwpydftqexm84a9hpdrkpajxhcg4r (gapracoolz.blockchain)
